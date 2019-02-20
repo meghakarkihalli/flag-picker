@@ -21,9 +21,10 @@ class Country extends Component {
 	}
 	onChecking(index)
 	{
-
+		const offset = 0x1f1a5;
 		this.setState({flagg:true,input:index})
-
+		let a = String.valueOf(Character.toChars(offset + this.state.country[this.state.input].flag.codePointAt(0)));
+		console.log(a);
 
 	}
 
@@ -58,7 +59,8 @@ class Country extends Component {
 					this.state.flagg ? <div className="flag">
 										<h1>Flags</h1>
 										<div>
-										<p>{String.fromCodePoint((this.state.country[this.state.input].flag).toString())}</p>
+										<p>{console.log(this.state.country[this.state.input])}
+										</p>
 										</div>
 										<button>Clear Flags</button>
 										</div> : (<div></div>)
