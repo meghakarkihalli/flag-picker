@@ -35,6 +35,7 @@ class Country extends Component {
 		const uncheckbox = Object.assign([], this.state.checkbox)
 		const sel = Object.assign([], this.state.selected)
 		let str = (this.state.country[index].flag)
+		console.log(str)
 		let a = String.valueOf(String.fromCharCode(offset + str.charAt(0))) + String.valueOf(String.fromCharCode(offset + str.charAt(1)));
 		
 		if(this.state.checkbox[index])
@@ -84,7 +85,7 @@ class Country extends Component {
 										<h1>Selected Flags</h1>
 										<div className="flag-container">
 										<ul>{ this.state.selected.map((item,index) => 
-										<div className="flag-div">{(this.state.a)}
+										<div className="flag-div">{(this.state.country[index].flag)}
 										</div>)}
 										</ul>
 										</div><Clear clicked={this.unmounting.bind(this)}/>
