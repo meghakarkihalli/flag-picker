@@ -5,13 +5,14 @@ import './App.css';
 
 class App extends Component {
   
-  constructor(){
-      super();
+  constructor(props){
+      super(props);
       this.state ={
         continent:[],
         contList:[],
         input:'',
-        display1:true
+        display1:true,
+        flagg:false
       }
     }
 
@@ -33,7 +34,9 @@ class App extends Component {
     this.setState({input:this.state.contList[index],display1:false})
     this.inputEntry.value = ""
   }
-
+  loading(){
+    this.setState({display1:true})
+  }
   render() {  
     var temp = new RegExp("^.*"+this.state.input+".*$");
     var t1 = this.state.contList.map((item) => item.toLowerCase());
@@ -50,15 +53,20 @@ class App extends Component {
             <input className="text" type="text" ref={el => this.inputEntry=el} onFocus={this.onChange.bind(this)} onChange={this.onChange.bind(this)}/>
             {this.state.display1 ? (
               t.map((item, index) => (<div className="instyle" onClick={this.onUpdate.bind(this, index)} key={index}>{this.state.contList[(t1.indexOf(item))]} </div>))
-              ):(<div> You Selected <br/> {this.state.input}</div>)
+              ):(<div/>)
+            }
+            {!this.state.display1 ? (<div>You Selected<br/>{this.state.input}</div>):(<div/>)
 
             }
           </div>          
           {!this.state.display1 ? (
-            <div >
-              <Country input={this.state.contList.indexOf(this.state.input)}/>
+            <div>
+
+              <Country loading={this.loading.bind(this)} input={this.state.contList.indexOf(this.state.input)}/>
             </div>
           ):(<div></div>)}
+
+          
        
       </div>
     );
